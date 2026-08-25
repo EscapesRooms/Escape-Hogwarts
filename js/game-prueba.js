@@ -197,26 +197,30 @@ function toggleMusic() {
             .then(() => {
                 musicBtn.innerHTML = "🔇 Silenciar Magia";
             })
-            .catch(err => {
-                console.log(err);
-            });
+            .catch(err => console.log(err));
 
     } else {
 
         music.pause();
-
         musicBtn.innerHTML = "🎵 Activar Magia";
     }
 }
 
+// Primer toque en cualquier parte de la pantalla
 function iniciarMusica() {
 
-    music.play()
-        .then(() => {
-            musicBtn.innerHTML = "🔇 Silenciar Magia";
-        })
-        .catch(() => { });
+    if (music.paused) {
+
+        music.play()
+            .then(() => {
+                musicBtn.innerHTML = "🔇 Silenciar Magia";
+            })
+            .catch(() => {});
+    }
 }
 
+// Móvil
 document.addEventListener("touchstart", iniciarMusica, { once: true });
+
+// PC
 document.addEventListener("click", iniciarMusica, { once: true });
