@@ -273,6 +273,19 @@ font-size:24px;
 line-height:1.5;
 }
 
+#progreso{
+
+margin-top:20px;
+
+text-align:center;
+
+color:#ffd700;
+
+font-size:18px;
+
+font-weight:bold;
+}
+
 .opcion{
 
 width:100%;
@@ -303,6 +316,190 @@ background:
 rgba(255,255,255,.15);
 
 transform:scale(1.01);
+}
+
+.siguiente{
+
+display:inline-block;
+
+width:auto;
+
+height:auto;
+
+margin-top:0;
+
+padding:14px 20px;
+
+border:1px solid #ffd700;
+
+background:#d4af37;
+
+color:#111;
+
+font-family:inherit;
+
+font-weight:bold;
+}
+
+#minijuego {
+margin-top:22px;
+}
+
+.estado-minijuego,
+.ronda-hechizo,
+.progreso-snitch {
+margin-top:14px;
+color:#ffd700;
+font-size:18px;
+font-weight:bold;
+text-align:center;
+}
+
+.guardianes,
+.anden,
+.runas,
+.runas-hechizo {
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+max-width:390px;
+margin:14px auto 0;
+}
+
+.enlace-mapa {
+   display:inline-block;
+   padding:10px 14px;
+   border:1px solid #d4af37;
+   border-radius:5px;
+   color:#ffd700;
+   font-size:17px;
+   text-decoration:none;
+}
+
+.enlace-mapa:hover {
+   background:#d4af37;
+   color:#111;
+}
+
+#resultado small {
+   display:inline-block;
+   margin-top:10px;
+   color:#fff;
+   font-size:15px;
+}
+
+.guardian,
+.acceso-anden,
+.runa,
+.runa-hechizo {
+width:100%;
+height:64px;
+margin:0;
+border:1px solid #d4af37;
+border-radius:8px;
+background:#242018;
+color:#fff8c7;
+font-size:26px;
+}
+
+.guardian-despierto,
+.acceso-correcto,
+.runa-correcta,
+.runa-acertada {
+background:#1d7429;
+border-color:#6dff7b;
+box-shadow:0 0 14px #6dff7b;
+}
+
+.secuencia-anden,
+.secuencia-hechizo {
+min-height:46px;
+margin:12px auto;
+padding:10px;
+border:1px solid #876514;
+border-radius:8px;
+background:#090909;
+color:#fff8c7;
+font-size:26px;
+letter-spacing:3px;
+text-align:center;
+}
+
+.boton-snitch {
+max-width:360px;
+margin:0 auto 15px;
+}
+
+.zona-snitch {
+position:relative;
+display:none;
+height:280px;
+overflow:hidden;
+border:1px solid #876514;
+border-radius:8px;
+background:radial-gradient(circle,#34301b 0%,#111 72%);
+}
+
+.snitch {
+position:absolute;
+width:58px;
+height:58px;
+margin:0;
+padding:0;
+border:2px solid #fff1a8;
+border-radius:50%;
+background:radial-gradient(circle at 35% 30%,#fff8c7,#d4af37 45%,#8b6500);
+color:#fff8c7;
+font-size:25px;
+box-shadow:0 0 10px #fff,0 0 24px #d4af37;
+transition:left .2s ease,top .2s ease;
+}
+
+.runa-fallida {
+background:#8d1f1f;
+border-color:#ff6d6d;
+}
+
+.caldero {
+max-width:180px;
+margin:0 auto;
+font-size:68px;
+}
+
+.ingredientes {
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+max-width:390px;
+margin:16px auto 0;
+}
+
+.ingrediente {
+width:100%;
+height:64px;
+margin:0;
+background:#242018;
+color:#fff8c7;
+font-size:28px;
+}
+
+.ingrediente-correcto {
+background:#1d7429;
+border:2px solid #6dff7b;
+}
+
+.caldero-error {
+animation:sacudir .25s ease-in-out;
+}
+
+@keyframes sacudir {
+25%{transform:translateX(-5px);}
+75%{transform:translateX(5px);}
+}
+
+.boton-hechizo {
+max-width:300px;
+margin:0 auto;
 }
 
 .correcta{

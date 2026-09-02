@@ -18,6 +18,7 @@ const preguntas = {
     2: {
         img: "images/loc2.jpg",
         localizacion: "📍 Zona Verde",
+        tipo: "runas",
         pregunta: "¿Qué objeto perteneció originalmente a Salazar Slytherin y acabó convertido en Horrocrux?",
         correcta: "B",
         respuestas: {
@@ -31,6 +32,7 @@ const preguntas = {
     3: {
         img: "images/loc3.jpg",
         localizacion: "📍 Nou Pins",
+        tipo: "guardianes",
         pregunta: "¿Cómo se llama el centauro que ayuda a Harry en el Bosque Prohibido?",
         correcta: "C",
         respuestas: {
@@ -44,6 +46,7 @@ const preguntas = {
     4: {
         img: "images/loc4.jpg",
         localizacion: "📍 Metro Via Júlia",
+        tipo: "pocion",
         pregunta: "¿Cuál es el nombre de la madre de Sirius Black?",
         correcta: "C",
         respuestas: {
@@ -57,6 +60,7 @@ const preguntas = {
     5: {
         img: "images/loc5.jpg",
         localizacion: "📍 Fuentes Via Júlia",
+        tipo: "snitch",
         pregunta: "¿Quién le da a Harry las branquialgas para realizar la segunda prueba del Torneo de los Tres Magos?",
         correcta: "A",
         respuestas: {
@@ -70,6 +74,7 @@ const preguntas = {
     6: {
         img: "images/loc6.jpg",
         localizacion: "📍 Ángel Pestaña",
+        tipo: "hechizo",
         pregunta: "¿Cuál es el nombre completo de Albus Dumbledore?",
         correcta: "B",
         respuestas: {
