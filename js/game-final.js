@@ -55,6 +55,8 @@ for (const letra in datos.respuestas) {
 
 function comprobar(letra) {
 
+    lanzarRelampago(letra === datos.correcta ? "acierto" : "error");
+
     if (letra === datos.correcta) {
 
         document.getElementById(letra)
@@ -91,6 +93,17 @@ function comprobar(letra) {
             .innerHTML =
             "❌ Incorrecto. Te queda un intento.";
     }
+}
+
+function lanzarRelampago(tipo) {
+
+    const relampago = document.createElement("div");
+
+    relampago.className = `relampago ${tipo}`;
+    relampago.setAttribute("aria-hidden", "true");
+    document.body.appendChild(relampago);
+
+    relampago.addEventListener("animationend", () => relampago.remove());
 }
 
 function desactivar() {
