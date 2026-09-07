@@ -502,8 +502,33 @@ box-shadow:0 0 14px #6dff7b;
 }
 
 .boton-snitch {
-max-width:360px;
+max-width:390px;
 margin:0 auto 15px;
+padding:0 18px;
+border:2px solid #fff1a8;
+border-radius:12px;
+background:linear-gradient(135deg,#8b6500,#d4af37 48%,#fff1a8);
+color:#201700;
+font-size:18px;
+letter-spacing:.5px;
+box-shadow:0 0 10px rgba(255,241,168,.65),0 0 24px rgba(212,175,55,.35);
+text-shadow:0 1px rgba(255,255,255,.45);
+transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;
+}
+
+.boton-snitch:hover {
+background:linear-gradient(135deg,#a87800,#f0c75d 48%,#fff8c7);
+transform:translateY(-2px) scale(1.01);
+box-shadow:0 0 14px rgba(255,241,168,.9),0 0 30px rgba(212,175,55,.5);
+}
+
+.boton-snitch:disabled {
+background:linear-gradient(135deg,#51400d,#80651b);
+color:#d9c98a;
+cursor:default;
+filter:saturate(.55);
+transform:none;
+box-shadow:0 0 8px rgba(212,175,55,.2);
 }
 
 .zona-snitch {

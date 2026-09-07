@@ -414,7 +414,7 @@ function pintarPocion() {
 
 function pintarSnitch() {
     const contenedor = document.getElementById("minijuego");
-    contenedor.innerHTML = '<button class="boton-snitch">🪄 Empezar a buscar la Snitch</button>' +
+    contenedor.innerHTML = '<button class="boton-snitch">⚡ Comenzar la caza de la Snitch ⚡</button>' +
         '<div class="zona-snitch"><button class="snitch" aria-label="Cazar Snitch dorada">⚡</button></div>' +
         '<div class="progreso-snitch">Capturas: 0 / 3</div>';
     const boton = contenedor.querySelector(".boton-snitch");
@@ -423,6 +423,7 @@ function pintarSnitch() {
     const progreso = contenedor.querySelector(".progreso-snitch");
     let capturas = 0;
     let intervalo;
+    const velocidadInicial = window.matchMedia("(max-width: 600px)").matches ? 950 : 1300;
 
     function mover() {
         snitch.style.left = `${8 + Math.random() * Math.max(0, zona.clientWidth - 74)}px`;
@@ -432,7 +433,7 @@ function pintarSnitch() {
         boton.disabled = true;
         zona.style.display = "block";
         mover();
-        intervalo = setInterval(mover, 1300);
+        intervalo = setInterval(mover, velocidadInicial);
     };
     snitch.onclick = () => {
         capturas++;
@@ -443,7 +444,7 @@ function pintarSnitch() {
             mostrarExito("¡Has capturado la Snitch tres veces!");
         } else {
             clearInterval(intervalo);
-            intervalo = setInterval(mover, 1300 - capturas * 350);
+            intervalo = setInterval(mover, velocidadInicial - capturas * 250);
             mover();
         }
     };
