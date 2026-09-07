@@ -422,7 +422,7 @@ function pintarSnitch() {
 function pintarHechizo() {
     const contenedor = document.getElementById("minijuego");
     const simbolos = ["✦", "☽", "⚡", "✹", "☄", "♜"];
-    const rondas = [3, 4, 5];
+    const rondas = [3, 3, 3];
     let ronda = 0;
     let secuencia = [];
     let posicion = 0;
@@ -435,6 +435,7 @@ function pintarHechizo() {
     const estado = contenedor.querySelector(".estado-minijuego");
 
     function nuevaRonda() {
+        contenedor.querySelector(".ronda-hechizo").textContent = `Ronda ${ronda + 1} de ${rondas.length}`;
         secuencia = [...simbolos].sort(() => Math.random() - .5).slice(0, rondas[ronda]);
         posicion = 0;
         bloqueado = true;
