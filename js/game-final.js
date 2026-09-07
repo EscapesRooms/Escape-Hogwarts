@@ -241,38 +241,36 @@ function pintarGuardianes() {
     const numeros = Array.from({ length: 9 }, (_, indice) => indice + 1)
         .sort(() => Math.random() - .5);
     let siguiente = 1;
+    let bloqueado = true;
 
     tablero.className = "guardianes";
     estado.className = "estado-minijuego";
-    estado.textContent = "Guardián siguiente: 1";
+    estado.textContent = "Memoriza la posición de los guardianes...";
     contenedor.append(tablero, estado);
-
-    function barajarGuardianes() {
-        [...tablero.children]
-            .sort(() => Math.random() - .5)
-            .forEach(boton => tablero.appendChild(boton));
-    }
 
     numeros.forEach(numero => {
         const boton = document.createElement("button");
         boton.className = "guardian";
         boton.textContent = numero;
+        boton.disabled = true;
         boton.onclick = () => {
+            if (bloqueado) return;
+
             if (numero !== siguiente) {
                 siguiente = 1;
                 tablero.querySelectorAll("button").forEach(x => {
                     x.disabled = false;
+                    x.textContent = "?";
                     x.classList.remove("guardian-despierto");
                 });
-                barajarGuardianes();
                 estado.textContent = "❌ Error. Vuelve a empezar por el 1.";
                 return;
             }
 
             boton.disabled = true;
+            boton.textContent = numero;
             boton.classList.add("guardian-despierto");
             siguiente++;
-            barajarGuardianes();
             estado.textContent = siguiente === 10
                 ? "✨ Los nueve guardianes están despiertos."
                 : `Guardián siguiente: ${siguiente}`;
@@ -280,6 +278,15 @@ function pintarGuardianes() {
         };
         tablero.appendChild(boton);
     });
+
+    setTimeout(() => {
+        bloqueado = false;
+        tablero.querySelectorAll("button").forEach(boton => {
+            boton.disabled = false;
+            boton.textContent = "?";
+        });
+        estado.textContent = "Descubre los guardianes en orden, del 1 al 9.";
+    }, 2200);
 }
 
 function pintarAnden() {
