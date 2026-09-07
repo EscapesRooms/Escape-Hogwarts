@@ -247,6 +247,12 @@ function pintarGuardianes() {
     estado.textContent = "Guardián siguiente: 1";
     contenedor.append(tablero, estado);
 
+    function barajarGuardianes() {
+        [...tablero.children]
+            .sort(() => Math.random() - .5)
+            .forEach(boton => tablero.appendChild(boton));
+    }
+
     numeros.forEach(numero => {
         const boton = document.createElement("button");
         boton.className = "guardian";
@@ -258,6 +264,7 @@ function pintarGuardianes() {
                     x.disabled = false;
                     x.classList.remove("guardian-despierto");
                 });
+                barajarGuardianes();
                 estado.textContent = "❌ Error. Vuelve a empezar por el 1.";
                 return;
             }
@@ -265,6 +272,7 @@ function pintarGuardianes() {
             boton.disabled = true;
             boton.classList.add("guardian-despierto");
             siguiente++;
+            barajarGuardianes();
             estado.textContent = siguiente === 10
                 ? "✨ Los nueve guardianes están despiertos."
                 : `Guardián siguiente: ${siguiente}`;
