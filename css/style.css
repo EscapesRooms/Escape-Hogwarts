@@ -425,6 +425,82 @@ letter-spacing:3px;
 text-align:center;
 }
 
+.ruta-tren {
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+max-width:620px;
+margin:16px auto 8px;
+padding:16px 10px;
+border:1px solid #876514;
+border-radius:8px;
+background:#090909;
+}
+
+.estacion-tren {
+color:#fff8c7;
+font-size:16px;
+font-weight:bold;
+}
+
+.linea-tren {
+display:flex;
+align-items:center;
+justify-content:center;
+width:42px;
+height:42px;
+border-radius:50%;
+background:#d4af37;
+color:#111;
+font-weight:bold;
+}
+
+.tren-en-marcha {
+min-height:64px;
+margin:8px auto;
+font-size:48px;
+text-align:center;
+}
+
+.tren-error {
+animation:sacudir .3s ease-in-out;
+}
+
+.tren-llegada {
+animation:llegada-tren .6s ease-in-out;
+}
+
+@keyframes llegada-tren {
+50%{transform:translateX(24px);}
+}
+
+.opciones-tren {
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+max-width:620px;
+margin:12px auto 0;
+}
+
+.destino-tren {
+height:58px;
+margin:0;
+background:#242018;
+color:#fff8c7;
+font-size:16px;
+}
+
+.destino-tren:hover {
+background:#3b321d;
+}
+
+.destino-correcto {
+background:#1d7429;
+border-color:#6dff7b;
+box-shadow:0 0 14px #6dff7b;
+}
+
 .boton-snitch {
 max-width:360px;
 margin:0 auto 15px;

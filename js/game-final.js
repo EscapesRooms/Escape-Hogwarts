@@ -50,7 +50,7 @@ const mensajes = {
     runas: "Descifra la secuencia de runas para abrir el acceso mágico.",
     guardianes: "Despierta a los nueve guardianes en orden, del 1 al 9.",
     anden: "Encuentra la ruta secreta del andén.",
-    pocion: "Prepara la poción siguiendo la receta secreta.",
+    pocion: "Controla el tren y llega hasta Via Júlia.",
     snitch: "Caza la Snitch dorada tres veces. Cada intento será más rápido.",
     hechizo: "Memoriza las secuencias mágicas y repítelas en el orden correcto."
 };
@@ -347,54 +347,69 @@ function pintarAnden() {
 
 function pintarPocion() {
     const contenedor = document.getElementById("minijuego");
-    const receta = ["🌿", "🦇", "🪶"];
-    const ingredientes = ["🪶", "🕷️", "🌿", "🦇", "🍄", "🐍"]
-        .sort(() => Math.random() - .5);
-    const caldero = document.createElement("div");
+    const tramos = [
+        { salida: "La Pau", correcta: "Verneda", alternativas: ["Poblenou", "Via Júlia"] },
+        { salida: "Verneda", correcta: "La Salut", alternativas: ["Besòs", "Trinitat Nova"] },
+        { salida: "La Salut", correcta: "Llucmajor", alternativas: ["Poblenou", "Barceloneta"] },
+        { salida: "Llucmajor", correcta: "Via Júlia", alternativas: ["Joanic", "La Pau"] }
+    ];
+    const ruta = document.createElement("div");
+    const tren = document.createElement("div");
+    const opciones = document.createElement("div");
     const estado = document.createElement("div");
-    let siguiente = 0;
+    let tramoActual = 0;
 
-    caldero.className = "caldero";
-    caldero.textContent = "🫕";
+    ruta.className = "ruta-tren";
+    tren.className = "tren-en-marcha";
+    opciones.className = "opciones-tren";
     estado.className = "estado-minijuego";
-    estado.textContent = "Añade los ingredientes en el orden correcto.";
-    contenedor.append(caldero, estado);
+    contenedor.append(ruta, tren, opciones, estado);
 
-    const tablero = document.createElement("div");
-    tablero.className = "ingredientes";
-    contenedor.appendChild(tablero);
+    function pintarTramo() {
+        const tramo = tramos[tramoActual];
+        const destinos = [tramo.correcta, ...tramo.alternativas]
+            .sort(() => Math.random() - .5);
 
-    ingredientes.forEach(ingrediente => {
-        const boton = document.createElement("button");
-        boton.className = "ingrediente";
-        boton.textContent = ingrediente;
-        boton.setAttribute("aria-label", `Ingrediente ${ingrediente}`);
-        boton.onclick = () => {
-            if (ingrediente !== receta[siguiente]) {
-                siguiente = 0;
-                caldero.classList.add("caldero-error");
-                tablero.querySelectorAll("button").forEach(x => {
-                    x.disabled = false;
-                    x.classList.remove("ingrediente-correcto");
-                });
-                estado.textContent = "❌ La poción se ha estropeado. Empieza de nuevo.";
-                setTimeout(() => caldero.classList.remove("caldero-error"), 300);
-                return;
-            }
+        ruta.innerHTML = `<span class="estacion-tren">🚉 ${tramo.salida}</span>` +
+            `<span class="linea-tren">L4</span>` +
+            `<span class="estacion-tren">🏁 Via Júlia</span>`;
+        tren.textContent = "🚇";
+        tren.classList.remove("tren-error", "tren-llegada");
+        estado.textContent = `Tramo ${tramoActual + 1} de ${tramos.length}: elige la siguiente estación.`;
+        opciones.innerHTML = "";
 
-            boton.disabled = true;
-            boton.classList.add("ingrediente-correcto");
-            siguiente++;
-            caldero.textContent = ["🫕", "🫧", "✨"][siguiente - 1];
-            if (siguiente === receta.length) {
-                estado.textContent = "✨ La poción está lista.";
-                mostrarExito("¡Has preparado la poción correctamente!");
-            } else {
-                estado.textContent = `Ingredientes añadidos: ${siguiente} / ${receta.length}`;
-            }
-        };
-        tablero.appendChild(boton);
-    });
+        destinos.forEach(destino => {
+            const boton = document.createElement("button");
+            boton.className = "destino-tren";
+            boton.textContent = `🚇 ${destino}`;
+            boton.onclick = () => {
+                opciones.querySelectorAll("button").forEach(x => x.disabled = true);
+
+                if (destino !== tramo.correcta) {
+                    tramoActual = 0;
+                    tren.classList.add("tren-error");
+                    estado.textContent = "❌ Te has equivocado de vía. El tren vuelve a La Pau.";
+                    setTimeout(pintarTramo, 900);
+                    return;
+                }
+
+                boton.classList.add("destino-correcto");
+                tren.classList.add("tren-llegada");
+                tramoActual++;
+                if (tramoActual === tramos.length) {
+                    estado.textContent = "✨ El tren ha llegado a Via Júlia.";
+                    mostrarExito("¡Has llegado a Via Júlia en tren!");
+                    return;
+                }
+
+                estado.textContent = "✅ Cambio de vía correcto. Preparando el siguiente tramo...";
+                setTimeout(pintarTramo, 700);
+            };
+            opciones.appendChild(boton);
+        });
+    }
+
+    pintarTramo();
 }
 
 function pintarSnitch() {
